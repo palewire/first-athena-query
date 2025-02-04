@@ -1,3 +1,3 @@
-# Your package name
+# First Athena Query
 
-Your documention starts here ...
+How to analyze hundreds of millions of records in seconds with Amazon Web Services and SQL

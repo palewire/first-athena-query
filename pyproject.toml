@@ -1,55 +1,23 @@
 [build-system]
-requires = ["setuptools >= 61.0", "setuptools_scm>=8"]
+requires = ["setuptools >= 61.0",]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "your-package-name"
-dynamic = ["version"]
+name = "first-athena-query"
+description = "How to analyze hundreds of millions of records in seconds with Amazon Web Services and SQL "
+version = "1.0.0"
 requires-python = ">=3.9"
 dependencies = [
     'exceptiongroup; python_version<"3.11"',
 ]
-authors = [
-  { name="Ben Welsh", email="b@palewi.re" },
-]
-description = "Your package description"
-license = {text = "MIT"}
-readme = "README.md"
-classifiers = [
-    "Development Status :: 5 - Production/Stable",
-    "Programming Language :: Python",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "License :: OSI Approved :: MIT License",
-]
 
 [project.optional-dependencies]
-test = [
-    "pytest-runner",
-    "pytest-cov",
-    "pytest-env",
-    "pytest-vcr",
-    "pytest-xdist",
-]
 docs = [
     "sphinx",
     "sphinx-autobuild",
-    "sphinxcontrib-mermaid",
     "myst-parser",
-]
-mypy = [
-    "mypy",
+    "sphinx-palewire-theme",
 ]
 
-[project.urls]
-Documentation = "https://palewi.re/docs/your-respository/"
-Maintainer = "https://github.com/palewire/"
-Source = "https://github.com/palewire/your-respository/"
-Issues = "https://github.com/palewire/your-respository/issues/"
-
-# [tool.setuptools]
-# packages = ["your_package_module"]
-
-[tool.setuptools_scm]
+[tool.setuptools]
+packages = ["docs",]
