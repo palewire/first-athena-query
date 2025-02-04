@@ -1,6 +1,6 @@
 # First Athena Query
 
-How to analyze hundreds of millions of records in seconds with Amazon Web Services and SQL
+How to analyze millions of records in seconds with Amazon Web Services and SQL
 
 ## What you will learn
 
@@ -8,7 +8,7 @@ We’ve all been there. Excel locks up. Your dataframe can’t hang. And that da
 
 There’s no way around it. The database you're working on is just too big for your laptop to handle.
 
-This tutorial offers a solution: Amazon Athena. Follow along and you will learn how to rip through tens of millions of records with the power of SQL.
+This tutorial offers a solution: Amazon Athena. Follow along and you will learn how to rip through records with the power of SQL.
 
 ## Who can take it
 
