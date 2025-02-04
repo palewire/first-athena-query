@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "first-athena-query"
-description = "How to analyze hundreds of millions of records in seconds with Amazon Web Services and SQL "
+description = "How to analyze millions of records in seconds with Amazon Web Services and SQL"
 version = "1.0.0"
 requires-python = ">=3.9"
 dependencies = [
