@@ -9,6 +9,10 @@ version = "1.0.0"
 requires-python = ">=3.9"
 dependencies = [
     'exceptiongroup; python_version<"3.11"',
+    "pre-commit",
+    "boto3",
+    "jupyterlab",
+    "pandas",
 ]
 
 [project.optional-dependencies]
