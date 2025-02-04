@@ -24,34 +24,34 @@ This course is free. Previous experience working with Amazon Web Services and SQ
 * [Running your first query](#running-your-first-query)
 * [Automating queries with Python](#automating-queries-with-python)
 
-### What is Athena?
+## What is Athena?
 
 Athena is the name of cloud-computing tool offered by Amazon Web Services that allows you to query static data files using SQL. It can analyze extremely large datasets in seconds without a traditional server or database; You only pay for the data you store and the queries you run.
 
-### How do newsrooms use it?
+## How do newsrooms use it?
 
 TK TK TK
 
-### Setting up an AWS account
+## Setting up an AWS account
 
 TK TK TK
 
-### Creating an s3 bucket to store data
+## Creating an s3 bucket to store data
 
 TK TK TK
 
-### Creating a database table in Athena
+## Creating a database table in Athena
 
 TK TK TK
 
-### Running your first query
+## Running your first query
 
 TK TK TK
 
-### Automating queries with Python
+## Automating queries with Python
 
 TK TK TK
 
-### About this class
+## About this class
 
 This guide was prepared by [Ben Welsh](https://palewi.re/who-is-ben-welsh/) and [Katlyn Alo](https://www.linkedin.com/in/katalo/) for [a training session](https://schedules.ire.org/nicar-2025/index.html#2080) at the National Institute for Computer-Assisted Reporting’s 2025 conference in Minnapolis. Some of the copy was written with the assistance of GitHub’s Copilot, an AI-powered text generator. The materials are available as free and [open source on GitHub](https://github.com/palewire/first-athena-query).
