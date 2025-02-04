@@ -49,7 +49,25 @@ Now you're ready to sign into the AWS Management Console, where you can access a
 
 ## Creating an s3 bucket to store data
 
-TK TK TK
+Now that you have an AWS account, you need to create a place to store your data. Amazon S3 is a cloud storage service that allows you to store static files in a folder known as a bucket. Our next step is to create a bucket to hold the dataset we'll be using in this tutorial.
+
+You should go to the search bar at the top of the console and search "S3". Then click on the link it offers.
+
+![AWS S3 search](_static/aws-s3-search.png)
+
+That will take you to a landing page for the service that will offer a large button that says "Create bucket." Click it.
+
+![Bucket button](_static/bucket-button.png)
+
+You can create a general purpose bucket with all of the default settings. Just make sure to give it a unique name. Then click "Create bucket" at the bottom of the form.
+
+![Create bucket](_static/create-bucket.png)
+
+Now you have a bucket. Click on its name to open it up.
+
+![Bucket list](_static/bucket-list.png)
+
+Now it's time to upload the data we'll be using in this tutorial, which is TK TK TK
 
 ## Creating a database table in Athena
 
