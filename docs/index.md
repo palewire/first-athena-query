@@ -16,13 +16,13 @@ This course is free. Previous experience working with Amazon Web Services and SQ
 
 ## Table of contents
 
-* What is Athena?
-* How do newsrooms use it?
-* Setting up an AWS account
-* Creating an s3 bucket to store data
-* Creating a database table in Athena
-* Running your first query in AWS
-* Automating queries with Python
+* [What is Athena?](#what-is-athena)
+* [How do newsrooms use it?](#how-do-newsrooms-use-it)
+* [Setting up an AWS account](#setting-up-an-aws-account)
+* [Creating an s3 bucket to store data](#creating-an-s3-bucket-to-store-data)
+* [Creating a database table in Athena](#creating-a-database-table-in-athena)
+* [Running your first query](#running-your-first-query)
+* [Automating queries with Python](#automating-queries-with-python)
 
 ### What is Athena?
 
