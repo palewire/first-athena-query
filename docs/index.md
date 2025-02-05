@@ -53,7 +53,7 @@ Now that you have an AWS account, you need to create a place to store your data.
 
 You should go to the search bar at the top of the console and search "S3". Then click on the link it offers.
 
-![AWS S3 search](_static/aws-s3-search.png)
+![AWS S3 search](_static/search-s3.png)
 
 That will take you to a landing page for the service that will offer a large button that says "Create bucket." Click it.
 
