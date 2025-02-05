@@ -87,9 +87,11 @@ Accessing Amazon Web Services with Python requires that you first establish an A
 
 Then scroll down to the "Access keys" section and click the button that says "Create access key."
 
-![Keys section](_static/keys-consent.png)
+![Keys section](_static/keys-section.png)
 
 Now you can create a root key by checking the box and clicking the button that says "Create access key."
+
+![Keys section](_static/keys-consent.png)
 
 The final screen will show you the key ID and secret key. I've redacted the key ID and secret key in the example below.
 
