@@ -79,7 +79,23 @@ TK TK TK
 
 ## Automating queries with Python
 
-TK TK TK
+Running queries in Athena is great, but automating them in Python is even better. It could allow you run queries on a schedule, or to loop through a list of queries and run them without having to click buttons in the console.
+
+Accessing Amazon Web Services with Python requires that you first establish an API key with permission to access the services you want to use. You can do that by clicking on the pulldown menu in the far upper right corner of the console and selecting "Security Credentials."
+
+![Settings pulldown](_static/account-menu.png)
+
+Then scroll down to the "Access keys" section and click the button that says "Create access key."
+
+![Keys section](_static/keys-consent.png)
+
+Now you can create a root key by checking the box and clicking the button that says "Create access key."
+
+The final screen will show you the key ID and secret key. I've redacted the key ID and secret key in the example below.
+
+![Keys screen](_static/redacted-keys.png)
+
+Copy and paste them into a text file for safekeeping. You will not be able to see the secret key again. They are what Python will use to authenticate itself with AWS.
 
 ## About this class
 
