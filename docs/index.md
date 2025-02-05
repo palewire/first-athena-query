@@ -89,15 +89,15 @@ Then scroll down to the "Access keys" section and click the button that says "Cr
 
 ![Keys section](_static/keys-section.png)
 
-Now you can create a root key by checking the box and clicking the button that says "Create access key."
+Now you can create a root key pair by checking the box and clicking the button that says "Create access key."
 
 ![Keys section](_static/keys-consent.png)
 
-The final screen will show you the key ID and secret key. I've redacted the key ID and secret key in the example below.
+The final screen will show you the key's ID and secret. I've redacted my pair in the example below.
 
 ![Keys screen](_static/redacted-keys.png)
 
-Copy and paste them into a text file for safekeeping. You will not be able to see the secret key again. They are what Python will use to authenticate itself with AWS.
+Copy and paste them into a text file for safekeeping. You will not be able to see the secret key again. They are what Python will use to gain access to AWS from outside the console.
 
 ## About this class
 
