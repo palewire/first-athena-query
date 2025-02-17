@@ -128,6 +128,7 @@ import time
 
 import boto3
 
+
 def query(
     sql: str,
     wait: int = 10,
