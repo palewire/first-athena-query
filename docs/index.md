@@ -193,11 +193,99 @@ def query(
     return query_id
 ```
 
-Next you'll want to install pandas, a popular Python library for working with data. You can do that with whatever Python package manager you prefer.
+You can now access the function in other Python files by importing the file we've created. As a simple example, create a second file named `run.py` and toss in the following:
+
+```python
+import athena
+
+sql = "SELECT * FROM database"
+q_id = athena.query(sql, verbose=True)
+print(q_id)
+```
+
+Run the file in your terminal.
+
+```bash
+pipenv run python run.py
+```
+
+Your terminal should print out its progress as it issues the query and waits for a response from Athena. After it finishes, it will print out the identifier for the result. Return to your S3 bucket in your web browser and you should see it after clicking into the `athena-workspace` subdirectory.
+
+SCREENSHOT TK
+
+If you download the file and open it in a spreadsheet you'll see the results.
+
+SCREENSHOT TK
+
+That's a good start, but it's hassle that we have to go look up the result ourselves with all that pointing and clicking. We'll get that done by adding another utility function that can download the query result and return a data table you can work with in Python.
+
+First you'll want to install pandas, a popular Python library for working with data. You can do that with whatever Python package manager you prefer.
 
 ```bash
 pip install pandas
 ```
+
+Reopen `athena.py` and edit the top of the file, above the query function, as follows. Notice how the `io` import has been added at the top and the `pandas` import has been added after `boto3`.
+
+```python
+"""Utilities for working Amazon Athena."""
+
+from __future__ import annotations
+
+import io
+import os
+import time
+
+import boto3
+import pandas as pd
+
+def get_df_from_athena(
+    sql: str,
+    verbose: bool = False,
+    **kwargs,
+) -> pd.DataFrame:
+    """Get pandas DataFrame from Amazon Athena query.
+
+    Args:
+        sql : str
+            formatted string containing athena sql query
+        verbose : bool
+            whether to print verbose output
+        kwargs
+            additional keyword arguments to pass to the dataframe
+
+    Returns:
+        pd.DataFrame : pandas DataFrame containing query results
+    """
+    # Run the query
+    job_id = query(sql, verbose=verbose)
+
+    # Connect to Amazon S3
+    client = boto3.client(
+        "s3",
+        aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
+        aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
+    )
+
+    # Download the file created by our query
+    response = client.get_object(
+        Bucket=os.getenv("AWS_S3_BUCKET_NAME"),
+        Key=f"athena-workspace/{job_id}.csv",
+    )
+
+    # Convert it to the file object
+    file_obj = io.BytesIO(response["Body"].read())
+
+    # Read the file into a pandas DataFrame
+    if kwargs is None:
+        kwargs = {}
+    df = pd.read_csv(file_obj, **kwargs)
+
+    # Return the DataFrame
+    return df
+```
+
+
 
 ## About this class
 
