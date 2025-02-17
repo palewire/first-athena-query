@@ -287,7 +287,109 @@ def get_dataframe(
     return df
 ```
 
+Once that's saved, return to `run.py` and change the file to take advantage of the new function.
 
+```python
+import athena
+
+sql = "SELECT * FROM database"
+df = athena.get_dataframe(sql, verbose=True)
+print(df.head())
+```
+
+Now run the same command as before and you should see the DataFrame printed to your console.
+
+```bash
+pipenv run python run.py
+```
+
+This simple function is now all you need to run the full spectrum of SQL queries against your Athena database. You could repurpose it in one-off shell scripts, scheduled tasks, Jupyter notebooks or wherever else you code to analyze your data with ease.
+
+It does, however, assume that you've already created an Athena database and data table manually in the web console. 
+
+... we still need a create table function here right? ...
+
+```python
+def drop_table(
+    database_name: str,
+    table_name: str,
+    verbose: bool = False,
+) -> bool:
+    """Drop Amazon Athena table.
+
+    Args:
+        database_name : str
+            name of the database
+        table_name : str
+            name of the table
+        verbose (bool, optional): Whether to print verbose output. Defaults to False.
+
+    Returns:
+        bool: Whether the function was successful.
+    """
+    # Drop the table if it exists
+    if verbose:
+        print(f"Dropping {database_name}.{table_name} if it exists")
+    drop_query = f"DROP TABLE IF EXISTS {database_name}.{table_name}"
+    query(drop_query, verbose=verbose)
+
+    # Return the result
+    if verbose:
+        print(f"Dropped Athena table: {database_name}.{table_name}")
+    return True
+
+
+def drop_database(
+    database_name: str,
+    verbose: bool = False,
+) -> bool:
+    """Drop Amazon Athena database.
+
+    Args:
+        database_name : str
+            name of the database
+        verbose (bool, optional): Whether to print verbose output. Defaults to False.
+
+    Returns:
+        bool: Whether the function was successful.
+    """
+    # Drop the database if it exists
+    if verbose:
+        print(f"Dropping {database_name} if it exists")
+    drop_query = f"DROP DATABASE IF EXISTS {database_name}"
+    query(drop_query, verbose=verbose)
+
+    # Return the result
+    if verbose:
+        print(f"Dropped Athena database: {database_name}")
+    return True
+
+
+def create_database(
+    database_name: str,
+    verbose: bool = False,
+) -> bool:
+    """Create Amazon Athena database.
+
+    Args:
+        database_name : str
+            name of the database
+        verbose (bool, optional): Whether to print verbose output. Defaults to False.
+
+    Returns:
+        bool: Whether the function was successful.
+    """
+    # Create the database if it doesn't exist
+    if verbose:
+        print(f"Creating {database_name} if it doesn't exist")
+    create_query = f"CREATE DATABASE IF NOT EXISTS {database_name}"
+    query(create_query, verbose=verbose)
+
+    # Return the result
+    if verbose:
+        print(f"Created Athena database: {database_name}")
+    return True
+```
 
 ## About this class
 
