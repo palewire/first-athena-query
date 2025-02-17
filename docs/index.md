@@ -239,7 +239,7 @@ import time
 import boto3
 import pandas as pd
 
-def get_df_from_athena(
+def get_dataframe(
     sql: str,
     verbose: bool = False,
     **kwargs,
