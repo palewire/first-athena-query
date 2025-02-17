@@ -222,7 +222,7 @@ That's a good start, but it's hassle that we have to go look up the result ourse
 First you'll want to install pandas, a popular Python library for working with data. You can do that with whatever Python package manager you prefer.
 
 ```bash
-pip install pandas
+pipenv install pandas
 ```
 
 Reopen `athena.py` and edit the top of the file, above the query function, as follows. Notice how the `io` import has been added at the top and the `pandas` import has been added after `boto3`.
