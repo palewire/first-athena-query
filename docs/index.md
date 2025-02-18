@@ -462,14 +462,13 @@ import athena
 athena.create_database("my_database", verbose=True)
 
 # Create the table
-field_list = [
-    ["id", "INT"],
-    ["name", "STRING"],
-]
 athena.create_table(
     database_name="my_database",
     table_name="my_table",
-    field_list=field_list,
+    field_list=[
+        ["id", "INT"],
+        ["name", "STRING"],
+    ],
     location="/my-folder/",
     verbose=True,
 )
