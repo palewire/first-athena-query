@@ -253,7 +253,7 @@ def get_dataframe(
             formatted string containing athena sql query
         verbose : bool
             whether to print verbose output
-        kwargs
+        **kwargs
             additional keyword arguments to pass to the dataframe
 
     Returns:
@@ -310,11 +310,93 @@ It does, however, assume that you've already created an Athena database and data
 ... we still need a create table function here right? ...
 
 ```python
+def create_database(
+    database_name: str,
+    verbose: bool = False,
+) -> str:
+    """Create Amazon Athena database.
+
+    Args:
+        database_name : str
+            name of the database
+        verbose : bool
+            whether to print verbose output
+
+    Returns:
+        str : query execution id
+    """
+    if verbose:
+        print(f"Creating {database_name} if it doesn't exist")
+    return query(f"CREATE DATABASE IF NOT EXISTS {database_name}", verbose=verbose)
+
+
+def drop_database(
+    database_name: str,
+    verbose: bool = False,
+) -> str:
+    """Drop Amazon Athena database.
+
+    Args:
+        database_name : str
+            name of the database
+        verbose : bool
+            whether to print verbose output
+
+    Returns:
+        str : query execution id
+    """
+    if verbose:
+        print(f"Dropping {database_name} if it exists")
+    return query(f"DROP DATABASE IF EXISTS {database_name}", verbose=verbose)
+
+
+def create_table(
+    database_name: str,
+    table_name: str,
+    field_list: list[list[str, str]],
+    location: str,
+    stored_as: typing.Literal["PARQUET", "CSV"] = "CSV",
+    verbose: bool = False,
+) -> str:
+    """Create Amazon Athena table.
+
+    Args:
+        database_name : str
+            name of the database
+        table_name : str
+            name of the table
+        field_list : list[list[str, str]]
+            list of field names and types. e.g. [["id", "INT"], ["name", "STRING"]].
+            Reference for field types available at https://docs.aws.amazon.com/athena/latest/ug/data-types.html
+        location : str
+            s3 location of the data inside AWS S3 bucket. e.g. 's3://my-bucket/my-folder/' would be /my-folder/
+        stored_as : str
+            file format of the source data. e.g. "PARQUET" or "CSV"
+        verbose : bool
+            whether to print verbose output
+
+    Returns:
+        str : query execution id
+    """
+    # Create the SQL statement
+    sql = f"CREATE EXTERNAL TABLE IF NOT EXISTS {database_name}.{table_name} (\n"
+    for field in field_list:
+        sql += f"    {field[0]} {field[1]},\n"
+    sql = sql[:-2] + "\n)\n"
+    sql += f"STORED AS {stored_as}\n"
+    sql += f"LOCATION '{location}'"
+
+    # Run the query
+    if verbose:
+        print(f"Creating Athena table: {database_name}.{table_name}")
+    return query(sql, verbose=verbose)
+
+
 def drop_table(
     database_name: str,
     table_name: str,
     verbose: bool = False,
-) -> bool:
+) -> str:
     """Drop Amazon Athena table.
 
     Args:
@@ -322,73 +404,16 @@ def drop_table(
             name of the database
         table_name : str
             name of the table
-        verbose (bool, optional): Whether to print verbose output. Defaults to False.
+        verbose : bool
+            whether to print verbose output
 
     Returns:
-        bool: Whether the function was successful.
+        str : query execution id
     """
     # Drop the table if it exists
     if verbose:
         print(f"Dropping {database_name}.{table_name} if it exists")
-    drop_query = f"DROP TABLE IF EXISTS {database_name}.{table_name}"
-    query(drop_query, verbose=verbose)
-
-    # Return the result
-    if verbose:
-        print(f"Dropped Athena table: {database_name}.{table_name}")
-    return True
-
-
-def drop_database(
-    database_name: str,
-    verbose: bool = False,
-) -> bool:
-    """Drop Amazon Athena database.
-
-    Args:
-        database_name : str
-            name of the database
-        verbose (bool, optional): Whether to print verbose output. Defaults to False.
-
-    Returns:
-        bool: Whether the function was successful.
-    """
-    # Drop the database if it exists
-    if verbose:
-        print(f"Dropping {database_name} if it exists")
-    drop_query = f"DROP DATABASE IF EXISTS {database_name}"
-    query(drop_query, verbose=verbose)
-
-    # Return the result
-    if verbose:
-        print(f"Dropped Athena database: {database_name}")
-    return True
-
-
-def create_database(
-    database_name: str,
-    verbose: bool = False,
-) -> bool:
-    """Create Amazon Athena database.
-
-    Args:
-        database_name : str
-            name of the database
-        verbose (bool, optional): Whether to print verbose output. Defaults to False.
-
-    Returns:
-        bool: Whether the function was successful.
-    """
-    # Create the database if it doesn't exist
-    if verbose:
-        print(f"Creating {database_name} if it doesn't exist")
-    create_query = f"CREATE DATABASE IF NOT EXISTS {database_name}"
-    query(create_query, verbose=verbose)
-
-    # Return the result
-    if verbose:
-        print(f"Created Athena database: {database_name}")
-    return True
+    return query(f"DROP TABLE IF EXISTS {database_name}.{table_name}", verbose=verbose)
 ```
 
 ## About this class
