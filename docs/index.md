@@ -146,6 +146,9 @@ def query(
 
     Returns:
         str : query execution id
+
+    Example:
+        >>> query("SELECT COUNT(*) FROM my_database.my_table", verbose=True)
     """
     # Create the Athena client
     client = boto3.client("athena", region_name=os.getenv("AWS_REGION_NAME"))
@@ -258,6 +261,11 @@ def get_dataframe(
 
     Returns:
         pd.DataFrame : pandas DataFrame containing query results
+
+    Example:
+        >>> sql = "SELECT COUNT(*) FROM my_database.my_table"
+        >>> df = get_dataframe(sql, verbose=True)
+        >>> print(df.head())
     """
     # Run the query
     job_id = query(sql, verbose=verbose)
@@ -305,11 +313,22 @@ pipenv run python run.py
 
 This simple function is now all you need to run the full spectrum of SQL queries against your Athena database. You could repurpose it in one-off shell scripts, scheduled tasks, Jupyter notebooks or wherever else you code to analyze your data with ease.
 
-It does, however, assume that you've already created an Athena database and data table manually in the web console. 
-
-... we still need a create table function here right? ...
+It does, however, assume that you've already created an Athena table manually in the web console. To automate that process as well, you can add the following functions to `athena.py`, which will allow you to create and drop databases and tables. Notice that the `typing` import has been added at the top of the file.
 
 ```python
+"""Utilities for working Amazon Athena."""
+
+from __future__ import annotations
+
+import io
+import os
+import time
+import typing
+
+import boto3
+import pandas as pd
+
+
 def create_database(
     database_name: str,
     verbose: bool = False,
@@ -324,6 +343,9 @@ def create_database(
 
     Returns:
         str : query execution id
+
+    Example:
+        >>> create_database("my_database", verbose=True)
     """
     if verbose:
         print(f"Creating {database_name} if it doesn't exist")
@@ -344,6 +366,9 @@ def drop_database(
 
     Returns:
         str : query execution id
+
+    Example:
+        >>> drop_database("my_database", verbose=True)
     """
     if verbose:
         print(f"Dropping {database_name} if it exists")
@@ -377,6 +402,15 @@ def create_table(
 
     Returns:
         str : query execution id
+
+    Example:
+        >>> create_table(
+        ...     "my_database",
+        ...     "my_table",
+        ...     [["id", "INT"], ["name", "STRING"]],
+        ...     "/my-folder/",
+        ...     verbose=True,
+        ... )
     """
     # Create the SQL statement
     sql = f"CREATE EXTERNAL TABLE IF NOT EXISTS {database_name}.{table_name} (\n"
@@ -409,12 +443,51 @@ def drop_table(
 
     Returns:
         str : query execution id
+
+    Example:
+        >>> drop_table("my_database", "my_table", verbose=True)
     """
     # Drop the table if it exists
     if verbose:
         print(f"Dropping {database_name}.{table_name} if it exists")
     return query(f"DROP TABLE IF EXISTS {database_name}.{table_name}", verbose=verbose)
 ```
+
+Now if you return to the `run.py` file and add code that will recreate the steps we executed manually earlier in the class.
+
+```python
+import athena
+
+# Create the database
+athena.create_database("my_database", verbose=True)
+
+# Create the table
+field_list = [
+    ["id", "INT"],
+    ["name", "STRING"],
+]
+athena.create_table(
+    database_name="my_database",
+    table_name="my_table",
+    field_list=field_list,
+    location="/my-folder/",
+    verbose=True,
+)
+
+# Run the query
+sql = "SELECT COUNT(*) FROM my_database.my_table"
+df = athena.get_dataframe(sql, verbose=True)
+
+print(df.head())
+```
+
+Run the file in your terminal.
+
+```bash
+pipenv run python run.py
+```
+
+You should see the same results as before, but now you've fully automated Athena, a process that could be repeated with limitless tables and data. Our work here is done. Go forth with furious gusto.
 
 ## About this class
 

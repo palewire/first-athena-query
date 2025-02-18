@@ -25,6 +25,9 @@ def create_database(
 
     Returns:
         str : query execution id
+
+    Example:
+        >>> create_database("my_database", verbose=True)
     """
     if verbose:
         print(f"Creating {database_name} if it doesn't exist")
@@ -45,6 +48,9 @@ def drop_database(
 
     Returns:
         str : query execution id
+
+    Example:
+        >>> drop_database("my_database", verbose=True)
     """
     if verbose:
         print(f"Dropping {database_name} if it exists")
@@ -78,6 +84,15 @@ def create_table(
 
     Returns:
         str : query execution id
+
+    Example:
+        >>> create_table(
+        ...     "my_database",
+        ...     "my_table",
+        ...     [["id", "INT"], ["name", "STRING"]],
+        ...     "/my-folder/",
+        ...     verbose=True,
+        ... )
     """
     # Create the SQL statement
     sql = f"CREATE EXTERNAL TABLE IF NOT EXISTS {database_name}.{table_name} (\n"
@@ -110,6 +125,9 @@ def drop_table(
 
     Returns:
         str : query execution id
+
+    Example:
+        >>> drop_table("my_database", "my_table", verbose=True)
     """
     # Drop the table if it exists
     if verbose:
@@ -134,6 +152,11 @@ def get_dataframe(
 
     Returns:
         pd.DataFrame : pandas DataFrame containing query results
+
+    Example:
+        >>> sql = "SELECT COUNT(*) FROM my_database.my_table"
+        >>> df = get_dataframe(sql, verbose=True)
+        >>> print(df.head())
     """
     # Run the query
     job_id = query(sql, verbose=verbose)
@@ -180,6 +203,9 @@ def query(
 
     Returns:
         str : query execution id
+
+    Example:
+        >>> query("SELECT COUNT(*) FROM my_database.my_table", verbose=True)
     """
     # Create the Athena client
     client = boto3.client("athena", region_name=os.getenv("AWS_REGION_NAME"))
