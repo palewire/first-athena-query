@@ -26,7 +26,7 @@ This course is free. Previous experience working with Amazon Web Services and SQ
 
 ## What is Athena?
 
-Athena is the name for a cloud-computing tool offered by Amazon Web Services that allows you to query static data files using SQL. It can analyze extremely large datasets in seconds without a traditional server or database. While it does cost money, the prices are low and there are no fixed costs. You only pay for the data you store and the queries you run.
+Athena is the name for a cloud-computing tool offered by Amazon Web Services that allows you to query static data files using SQL. It can analyze extremely large datasets in seconds without a traditional server or database. While it does cost money, the prices are low, and there are no fixed, on-going costs. You only pay for the data you upload and the queries you run.
 
 ## How do newsrooms use it?
 
