@@ -490,9 +490,9 @@ You should see the same results as before, but now you've fully automated Athena
 
 ## How we wrangled the data
 
-Athena is wonderful for processing and analyzing BIG data, but sometimes we face obstacles to even getting the data loaded in the first place. For this demo, we wrangled the data using (a simple Python script)[https://github.com/palewire/first-athena-query/tree/main/scripts/wrangle_hmda_data.py] that hit the HMDA API with different parameters and then wrote those files to our S3 bucket.
+Athena is wonderful for processing and analyzing BIG data, but sometimes we face obstacles to even getting the data loaded in the first place. For this demo, we wrangled the data using [a simple Python script](https://github.com/palewire/first-athena-query/tree/main/scripts/wrangle_hmda_data.py) that hit the HMDA API with different parameters and then wrote those files to our S3 bucket.
 
-These files are quite big, so the script took a couple hours to run. There are different methods for keeping your computer "awake" long enough to run scripts like this. (Caffeinate)[https://ss64.com/mac/caffeinate.html], for example, is a terminal-based command that keeps your computer from sleeping while it's running. For this particular data-wrangling mission, we used a good ole fashioned video player to keep the computer up; specifically, we used (Nick Offerman's 'Yule Log' Ten Hour Version)[https://www.youtube.com/watch?v=_StgHl92v5Q].
+These files are quite big, so the script took a couple hours to run. There are different methods for keeping your computer "awake" long enough to run scripts like this. [Caffeinate](https://ss64.com/mac/caffeinate.html), for example, is a terminal-based command that keeps your computer from sleeping while it's running. For this particular data-wrangling mission, we used a good old-fashioned video player to keep the computer up; specifically, we used [Nick Offerman's 'Yule Log' Ten Hour Version](https://www.youtube.com/watch?v=_StgHl92v5Q).
 
 ## About this class
 
