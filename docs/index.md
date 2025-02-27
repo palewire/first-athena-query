@@ -1,6 +1,6 @@
 # First Athena Query
 
-How to analyze millions of records in seconds with Amazon Web Services and SQL
+Analyze millions of records in seconds with Amazon Web Services and SQL
 
 ## What you will learn
 
