@@ -105,7 +105,7 @@ Now you will need to install `boto3`, the most popular Python tool for working w
 pipenv install boto3
 ```
 
-In your project directory, create a file named `.env` to store you AWS credentials and other sensitive information. It should look like the following. Unless you changed the default settings when creating your S3 bucket, the region name should be `us-east-1`.
+In your project directory, create a file named `.env` to store your AWS credentials and other sensitive information. It should look like the following. Unless you changed the default settings when creating your S3 bucket, the region name should be `us-east-1`.
 
 ```bash
 AWS_ACCESS_KEY_ID=YOUR_ACCESS_KEY_ID
