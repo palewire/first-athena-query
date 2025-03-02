@@ -19,8 +19,8 @@ This course is free. Previous experience working with Amazon Web Services and SQ
 * [What is Athena?](#what-is-athena)
 * [How do newsrooms use it?](#how-do-newsrooms-use-it)
 * [Setting up an AWS account](#setting-up-an-aws-account)
-* [Creating an s3 bucket to store data](#creating-an-s3-bucket-to-store-data)
-* [Creating a database table in Athena](#creating-a-database-table-in-athena)
+* [Uploading data](#uploading-data)
+* [Configuring Athena](#configuring-athena)
 * [Running your first query](#running-your-first-query)
 * [Automating queries with Python](#automating-queries-with-python)
 
@@ -47,7 +47,7 @@ Now you're ready to sign into the AWS Management Console, where you can access a
 ![AWS console](_static/aws-console.png)
 
 
-## Creating an s3 bucket to store data
+## Uploading data
 
 You need to create a place to store your data. Amazon S3 is a cloud storage service that allows you to hold static files in a folder known as a bucket. Our next step is to create a bucket for the dataset we'll analyze in this tutorial.
 
