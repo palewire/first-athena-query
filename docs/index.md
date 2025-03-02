@@ -67,15 +67,67 @@ Now you have a bucket. Click on its name to open it up.
 
 ![Bucket list](_static/bucket-list.png)
 
-Now it's time to upload the data we'll be using in this tutorial, which is TK TK TK
+Now it's time to upload the data you'll be using. You can do that by clicking the "Upload" button at the top of the page and following the instructions there. 
 
-## Creating a database table in Athena
+Unlike a traditional database, you do not need to store your records in a single table or file. Athena will run queries across a nearly unlimited number of static data files, whatever their size, provided that they all share the same column headers and data types.
 
-TK TK TK
+So you should aim to create a subdirectory where all of the files you want to analyze as posted side by side. You should make sure you they have the same schema. And then you should upload them all in a common data type. Athena recommends using the relatively new [parquet](https://en.wikipedia.org/wiki/Apache_Parquet) format, a favorite of data scientists in Silicon Valley, but you also use old-fashioned text files with [comma-separated values](https://en.wikipedia.org/wiki/Comma-separated_values).
+
+For this demo, we wrangled our dataset using [a simple Python script](https://github.com/palewire/first-athena-query/tree/main/scripts/wrangle_hmda_data.py) that downloads from our source and uploads CSV files an S3 bucket.
+
+The script downloads millions of mortgage loan applications gathered by the [U.S. Consumer Financial Protection Bureau](https://ffiec.cfpb.gov/) under the terms of the [Home Mortgage Disclosure Act](https://en.wikipedia.org/wiki/Home_Mortgage_Disclosure_Act). Data journalists commonly use the HMDA database to analyze lending patterns.
+
+[![HMDA site](_static/hmda-site.png)](https://ffiec.cfpb.gov/)
+
+:::{admonition} Note
+If you decide to run our script yourself, be aware that these files are quite big, so the script can take several hours to run. You'll also need to adapt the Amazon credentials to conform your account.
+
+There are different methods for keeping your laptop awake long enough to run scripts like this. [Caffeinate](https://ss64.com/mac/caffeinate.html), for example, is a terminal-based command that keeps your computer from sleeping while it's running. For this particular data-wrangling mission, we used a good old-fashioned video player to keep the computer up; specifically, we used [Nick Offerman's 'Yule Log' Ten Hour Version](https://www.youtube.com/watch?v=_StgHl92v5Q).
+:::
+
+Once your source data is uploaded, the file step on S3 is to create and output folder where Athena can store the result of its queries. You should do this hitting the "Create folder" button in the S3 toolbar and naming the new directory something like "query-output".
+
+![Create query output folder](_static/create-output-folder.png)
+
+## Configuring Athena
+
+Once your data and S3 are ready, search for "Athena" in the bar at the top of the Amazon's console. Click on the first option it returns.
+
+That will take you to the Athena control panel, where you will be see a box at the top of the page prompting you to configure the location of query results. Hit the "Edit settings" button it presents.
+
+![Athena welcome](_static/athena-welcome.png)
+
+That will take your to a form. Click on "Browse S3."
+
+![Athena output form](_static/athena-output-form.png)
+
+Then navigate to the query output folder you created and select it.
+
+![Select output folder](_static/select-output-folder.png)
+
+Submit that without any additional configuration and your Athena panel should show that it's ready to work. You should then click on the "Editor" tab near the top left of the page to return to Athena's query panel.
+
+![Ready output folder](_static/output-folder-is-ready.png)
+
+Now we finally start in with SQL. The first step is to create a database in Athena's system that will store your data tables. You can name it whatever you like, but you should try to keep it clear and short. Then you draft the classic `CREATE DATABASE` statement and submit it by hitting the "Run" button.
+
+In our example, this will be:
+
+```sql
+CREATE DATABASE hmda
+```
+
+![Create db](_static/create-db.png)
+
+Create table TK
 
 ## Running your first query
 
-TK TK TK
+```sql
+SELECT COUNT(*) FROM hmda.hmda
+```
+
+![Count All](_static/count-all.png)
 
 ## Automating queries with Python
 
@@ -232,7 +284,7 @@ pipenv install pandas
 Reopen `athena.py` and edit the top of the file, above the query function, as follows. Notice how the `io` import has been added at the top and the `pandas` import has been added after `boto3`.
 
 ```python
-"""Utilities for working Amazon Athena."""
+"""Utilities for working with Amazon Athena."""
 
 from __future__ import annotations
 
@@ -487,12 +539,6 @@ pipenv run python run.py
 ```
 
 You should see the same results as before, but now you've fully automated Athena, a process that could be repeated with limitless tables and data. Our work here is done. Go forth with furious gusto.
-
-## How we wrangled the data
-
-Athena is wonderful for processing and analyzing BIG data, but sometimes we face obstacles to even getting the data loaded in the first place. For this demo, we wrangled the data using [a simple Python script](https://github.com/palewire/first-athena-query/tree/main/scripts/wrangle_hmda_data.py) that hit the HMDA API with different parameters and then wrote those files to our S3 bucket.
-
-These files are quite big, so the script took a couple hours to run. There are different methods for keeping your computer "awake" long enough to run scripts like this. [Caffeinate](https://ss64.com/mac/caffeinate.html), for example, is a terminal-based command that keeps your computer from sleeping while it's running. For this particular data-wrangling mission, we used a good old-fashioned video player to keep the computer up; specifically, we used [Nick Offerman's 'Yule Log' Ten Hour Version](https://www.youtube.com/watch?v=_StgHl92v5Q).
 
 ## About this class
 

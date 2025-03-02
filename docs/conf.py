@@ -22,7 +22,11 @@ html_theme_options: dict[Any, Any] = {
 
 extensions = [
     "myst_parser",
-    "sphinx.ext.napoleon",
+]
+
+myst_enable_extensions = [
+    "attrs_block",
+    "colon_fence",
 ]
 source_suffix = ".md"
 master_doc = "index"
