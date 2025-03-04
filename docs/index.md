@@ -147,15 +147,30 @@ ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
 STORED AS TEXTFILE
 LOCATION 's3://first-athena-query/example-data/'
+TBLPROPERTIES ('skip.header.line.count'='1')
 ```
 
 ## Running your first query
 
+
 ```sql
-SELECT COUNT(*) FROM hmda.hmda
+SELECT *
+FROM hmda.hmda
+LIMIT 10
+```
+
+```sql
+SELECT COUNT(*)
+FROM hmda.hmda
 ```
 
 ![Count All](_static/count-all.png)
+
+```
+SELECT activity_year, COUNT(*)
+FROM hmda.hmda
+GROUP BY activity_year
+```
 
 ## Automating queries with Python
 
