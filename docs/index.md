@@ -119,7 +119,35 @@ CREATE DATABASE hmda
 
 ![Create db](_static/create-db.png)
 
-Create table TK
+```sql
+CREATE EXTERNAL TABLE hmda (
+  activity_year int,
+  lei string,
+  state_code string,
+  county_code string,
+  census_tract string,
+  derived_loan_product_type string,
+  derived_dwelling_category string,
+  derived_ethnicity string,
+  derived_race string,
+  derived_sex string,
+  action_taken int,
+  purchaser_type int,
+  preapproval int,
+  loan_type int,
+  loan_purpose int,
+  lien_status int,
+  reverse_mortgage int,
+  open_end_line_of_credit int,
+  business_or_commercial_purpose int,
+  debt_to_income_ratio string,
+  applicant_credit_score_type string
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE
+LOCATION 's3://first-athena-query/example-data/'
+```
 
 ## Running your first query
 
