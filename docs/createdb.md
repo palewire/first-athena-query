@@ -1,6 +1,6 @@
 # Creating an Athena database
 
-Once your data uploads to S3, you can link it to Athena by creating a virtual database.
+Once your data uploads to S3, you can link it to Athena by creating a database.
 
 Start by searching for “Athena” in the bar at the top of Amazon’s management console. Click on the first result.
 
