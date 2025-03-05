@@ -8,7 +8,7 @@ Athena can analyze massive datasets in seconds without a traditional server or d
 
 ## How do newsrooms use it?
 
-Given the limitations of today’s personal computers, it becomes difficult to work with datasets larger than a few gigabytes. Campaign contributions, voter registration files, consumer complaints, climate estimates, social media extracts and many other newsworthy sources often exceed tens of millions of records.
+Given the limitations of today’s personal computers, it becomes difficult to work with datasets larger than a few gigabytes. Campaign contributions, voter registration files, consumer complaints, climate estimates, social media extracts and many other newsworthy sources often exceed tens of millions of records and surpass the capabilities of a typical laptop.
 
 Data journalists can turn to Athena to interrogate these datasets without having to invest in expensive hardware or learn a new programming language. SQL is a standard tool in the data journalist’s toolbox, and Athena is built to work with it.
 
