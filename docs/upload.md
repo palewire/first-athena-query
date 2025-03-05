@@ -31,7 +31,7 @@ We won’t upload our data using the point-and-click interface for this demonstr
 The script deposited our data in a subdirectory called `example-data` in our bucket, which is where we will ask Athena to direct its queries.
 
 :::{admonition} Note
-If you decide to run our script, be aware that these files are pretty big, so the script can take several hours. You’ll also need to adapt the Amazon credentials to suit your account.
+If you decide to run our script, be aware that these files are pretty big, so the process can take several hours. You’ll also need to adapt the Amazon credentials to suit your account, which will require creating an API key, a task we don't cover in this guide.
 
 There are different methods for keeping your laptop awake long enough to run scripts like this. [Caffeinate](https://ss64.com/mac/caffeinate.html), for example, is a terminal-based command that keeps your computer from sleeping while running. For this data-wrangling mission, we used a good old-fashioned video player to keep the laptop awake; specifically, we used [“Nick Offerman's 'Yule Log' Ten Hour Version”](https://www.youtube.com/watch?v=_StgHl92v5Q).
 :::
