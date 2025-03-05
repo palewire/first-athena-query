@@ -407,4 +407,4 @@ Run the file in your terminal.
 pipenv run python run.py
 ```
 
-You should see the same results as before, but now you've fully automated Athena, a process that could be repeated with limitless tables and data. Our work here is done. Go forth with furious gusto.
+You should see the same results as before, but now you've fully automated Athena, a process that could be repeated with limitless tables and data. Our work here is done.
