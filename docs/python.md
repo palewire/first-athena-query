@@ -124,7 +124,7 @@ def query(
     return query_id
 ```
 
-It is a utility function that allows you to run queries in Athena from Python. Read it carefully, and you’ll see how it uses boto3 to send an SQL query to Athena and store the results in a subdirectory of your bucket named `query-output`.
+It is a utility function that allows you to run queries in Athena from Python. Read it carefully, and you’ll see how it uses `boto3` to send an SQL query to Athena and store the results in a subdirectory of your bucket named `query-output`.
 
 You can access the function in other Python files by importing the file we've created. As a simple example, create a second file named `run.py` and toss in the following:
 
