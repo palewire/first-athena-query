@@ -2,9 +2,13 @@
 
 ```sql
 SELECT *
-FROM hmda.hmda
+FROM hmda.loans
 LIMIT 10
 ```
+
+![Select All](_static/limit.png)
+
+![Select All](_static/limit-result.png)
 
 ```sql
 SELECT COUNT(*)

@@ -26,7 +26,7 @@ Submit that without additional configuration. Your Athena panel should now be re
 
 The first step is creating a database in Athena’s system to store your data tables. You can name it whatever you like, but you should keep it clear and short.
 
-Then, you draft [Athena's variation](https://docs.aws.amazon.com/athena/latest/ug/create-database.html) on the classic `CREATE DATABASE` statement. In our example, we will name our database after our source dataset, `hmda`.
+Once you decide on a name, you draft [Athena's variation](https://docs.aws.amazon.com/athena/latest/ug/create-database.html) on the classic `CREATE DATABASE` statement. In our example, we will name our database after our source dataset, `hmda`.
 
 ```sql
 CREATE DATABASE hmda
