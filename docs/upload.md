@@ -1,39 +1,43 @@
-# Uploading data
+# Uploading data to S3
 
-You need to create a place to store your data. Amazon S3 is a cloud storage service that allows you to hold static files in a folder known as a bucket. Our next step is to create a bucket for the dataset we'll analyze in this tutorial.
+Before Athena can analyze your data, you need to upload it to Amazon's cloud storage service, a product known as [S3](https://en.wikipedia.org/wiki/Amazon_S3) for Simple Storage Service.
 
 You should go to the search bar at the top of the console and search "S3". Then click on the link it offers.
 
 ![AWS S3 search](_static/search-s3.png)
 
-That will take you to a landing page for the service that will offer a large button that says "Create bucket." Click it.
+Amazon S3 allows you to hold nearly unlimited static files in a virtual folder known as a bucket. To create one, click the large button that says “Create bucket.”
 
 ![Bucket button](_static/bucket-button.png)
 
-You can create a general purpose bucket with all of the default settings. Just make sure to give it a unique name. Then click "Create bucket" at the bottom of the form.
+Accepting the default settings allows you to create a general-purpose bucket suitable for private data analysis. Just make sure to give your folder a unique name, like `first-athena-query`. Then click the “Create bucket” button at the bottom of the form.
 
 ![Create bucket](_static/create-bucket.png)
 
-Now you have a bucket. Click on its name to open it up.
+Now, you should see your new bucket in a list. Click on its name to open it.
 
 ![Bucket list](_static/bucket-list.png)
 
-Now it's time to upload the data you'll be using. You can do that by clicking the "Upload" button at the top of the page and following the instructions there. 
+It’s time to upload your data. One way to do that is to click the “Upload” button at the top of the page and follow the instructions there.
 
-Unlike a traditional database, you do not need to store your records in a single table or file. Athena will run queries across a nearly unlimited number of static data files, whatever their size, provided that they all share the same column headers and data types.
+Unlike a traditional database, Athena does not require storing your records in a single table or file. Athena can run queries across a folder of static data files, whatever their size, provided they all share the same column headers and data types.
 
-So you should aim to create a subdirectory where all of the files you want to analyze as posted side by side. You should make sure you they have the same schema. And then you should upload them all in a common data type. Athena recommends using the relatively new [parquet](https://en.wikipedia.org/wiki/Apache_Parquet) format, a favorite of data scientists in Silicon Valley, but you also use old-fashioned text files with [comma-separated values](https://en.wikipedia.org/wiki/Comma-separated_values).
+So, you should create a subdirectory in the bucket where all of the files you want to analyze are posted side by side. You must be very careful to ensure they all share the same schema. You should consistently format them all in a data format supported by Athena, [a list](https://docs.aws.amazon.com/athena/latest/ug/notebooks-spark-data-and-storage-formats.html) that includes traditional [comma-separated values](https://en.wikipedia.org/wiki/Comma-separated_values) and the popular [Javascript Object Notation](https://en.wikipedia.org/wiki/JSON), as well as more efficient formats favored by data scientists like [Apache Parquet](https://en.wikipedia.org/wiki/Apache_Parquet).
 
-For this demo, we wrangled our dataset using [a simple Python script](https://github.com/palewire/first-athena-query/tree/main/scripts/wrangle_hmda_data.py) that downloads from our source and uploads CSV files an S3 bucket.
+[![Athena formats](_static/athena-formats.png)](https://docs.aws.amazon.com/athena/latest/ug/notebooks-spark-data-and-storage-formats.html)
 
-The script downloads millions of mortgage loan applications gathered by the [U.S. Consumer Financial Protection Bureau](https://ffiec.cfpb.gov/) under the terms of the [Home Mortgage Disclosure Act](https://en.wikipedia.org/wiki/Home_Mortgage_Disclosure_Act).
+We won’t upload our data using the point-and-click interface for this demonstration. Instead, we prepared our example data using [a Python script](https://github.com/palewire/first-athena-query/tree/main/scripts/wrangle_hmda_data.py) that downloads millions of mortgage loan applications gathered by the [U.S. Consumer Financial Protection Bureau](https://ffiec.cfpb.gov/) and uploads CSV files to our S3 bucket using the [boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) library.
+
+The script deposited our data in a subdirectory called `example-data` in our bucket, which is where we will ask Athena to direct its queries.
 
 :::{admonition} Note
-If you decide to run our script yourself, be aware that these files are quite big, so the script can take several hours to run. You'll also need to adapt the Amazon credentials to conform your account.
+If you decide to run our script, be aware that these files are pretty big, so the script can take several hours. You’ll also need to adapt the Amazon credentials to suit your account.
 
-There are different methods for keeping your laptop awake long enough to run scripts like this. [Caffeinate](https://ss64.com/mac/caffeinate.html), for example, is a terminal-based command that keeps your computer from sleeping while it's running. For this particular data-wrangling mission, we used a good old-fashioned video player to keep the computer up; specifically, we used [Nick Offerman's 'Yule Log' Ten Hour Version](https://www.youtube.com/watch?v=_StgHl92v5Q).
+There are different methods for keeping your laptop awake long enough to run scripts like this. [Caffeinate](https://ss64.com/mac/caffeinate.html), for example, is a terminal-based command that keeps your computer from sleeping while running. For this data-wrangling mission, we used a good old-fashioned video player to keep the laptop awake; specifically, we used [“Nick Offerman's 'Yule Log' Ten Hour Version”](https://www.youtube.com/watch?v=_StgHl92v5Q).
 :::
 
-Once your source data is uploaded, the file step on S3 is to create and output folder where Athena can store the result of its queries. You should do this hitting the "Create folder" button in the S3 toolbar and naming the new directory something like "query-output".
+Once your data is uploaded, the final step on S3 is to create an output folder where Athena can store the results of its queries. You should do this by hitting the “Create folder” button in the S3 toolbar and naming the new directory something like `query-output`.
 
 ![Create query output folder](_static/create-output-folder.png)
+
+Keep this folder separate from the one that holds your data files to avoid errors and confusion.
