@@ -1,4 +1,4 @@
-# Automating Athena queries with Python
+# Automating Athena with Python
 
 Running queries in Athena is great, but automating them in Python is even better. It could allow you run queries on a schedule, or to loop through a list of queries and run them without having to click buttons in the console.
 

@@ -1,4 +1,4 @@
-# Running SQL queries in the Athena console
+# Running SQL with Athena
 
 ```sql
 SELECT *
