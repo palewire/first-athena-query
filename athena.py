@@ -171,7 +171,7 @@ def get_dataframe(
     # Download the file created by our query
     response = client.get_object(
         Bucket=os.getenv("AWS_S3_BUCKET_NAME"),
-        Key=f"athena-workspace/{job_id}.csv",
+        Key=f"query-output/{job_id}.csv",
     )
 
     # Convert it to the file object
@@ -211,7 +211,7 @@ def query(
     client = boto3.client("athena", region_name=os.getenv("AWS_REGION_NAME"))
 
     # Set the destination as our temporary S3 workspace folder
-    s3_destination = f"s3://{os.getenv('AWS_S3_BUCKET_NAME')}/athena-workspace/"
+    s3_destination = f"s3://{os.getenv('AWS_S3_BUCKET_NAME')}/query-output/"
 
     # Execute the query
     if verbose:

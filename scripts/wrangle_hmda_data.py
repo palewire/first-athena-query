@@ -21,8 +21,8 @@ LOAN_PURPOSES = [1, 2, 31, 32, 4, 5]
 s3_client = boto3.client(
     "s3", 
     region_name=AWS_REGION,
-    aws_access_key_id=os.environ.get("AWS_ACCESS_KEY"),
-    aws_secret_access_key=os.environ.get("AWS_SECRET_KEY")
+    aws_access_key_id=os.environ.get("AWS_ACCESS_KEY_ID"),
+    aws_secret_access_key=os.environ.get("AWS_SECRET_ACCESS_KEY")
 )
 
 def file_exists_in_s3(file_path):

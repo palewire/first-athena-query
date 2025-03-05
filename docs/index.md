@@ -211,7 +211,7 @@ AWS_S3_BUCKET_NAME=YOUR_BUCKET_NAME
 
 Create a new file called `athena.py` in your text editor of choice, we prefer [VSCode](https://code.visualstudio.com/), and paste in the following code.
 
-It is a utility function that will allow you to run queries in Athena from Python. Read it carefully and you'll see how it uses `boto3` to send a SQL query to Athena and store the results in a subdirectory of your bucket named `athena-workspace`.
+It is a utility function that will allow you to run queries in Athena from Python. Read it carefully and you'll see how it uses `boto3` to send a SQL query to Athena and store the results in a subdirectory of your bucket named `query-output`.
 
 ```python
 """Utilities for working Amazon Athena."""
@@ -249,7 +249,7 @@ def query(
     client = boto3.client("athena", region_name=os.getenv("AWS_REGION_NAME"))
 
     # Set the destination as our temporary S3 workspace folder
-    s3_destination = f"s3://{os.getenv('AWS_S3_BUCKET_NAME')}/athena-workspace/"
+    s3_destination = f"s3://{os.getenv('AWS_S3_BUCKET_NAME')}/query-output/"
 
     # Execute the query
     if verbose:
@@ -308,7 +308,7 @@ Run the file in your terminal.
 pipenv run python run.py
 ```
 
-Your terminal should print out its progress as it issues the query and waits for a response from Athena. After it finishes, it will print out the identifier for the result. Return to your S3 bucket in your web browser and you should see it after clicking into the `athena-workspace` subdirectory.
+Your terminal should print out its progress as it issues the query and waits for a response from Athena. After it finishes, it will print out the identifier for the result. Return to your S3 bucket in your web browser and you should see it after clicking into the `query-output` subdirectory.
 
 SCREENSHOT TK
 
@@ -375,7 +375,7 @@ def get_dataframe(
     # Download the file created by our query
     response = client.get_object(
         Bucket=os.getenv("AWS_S3_BUCKET_NAME"),
-        Key=f"athena-workspace/{job_id}.csv",
+        Key=f"query-output/{job_id}.csv",
     )
 
     # Convert it to the file object
