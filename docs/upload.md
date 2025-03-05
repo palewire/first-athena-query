@@ -1,6 +1,6 @@
 # Uploading data to S3
 
-Before Athena can analyze your data, you need to upload it to Amazon's cloud storage service, a product known as [S3](https://en.wikipedia.org/wiki/Amazon_S3) for Simple Storage Service.
+Before Athena can analyze your data, you need to upload it to Amazon's cloud storage service, a product known as Simple Storage Service or, more commonly, [S3](https://en.wikipedia.org/wiki/Amazon_S3).
 
 You should go to the search bar at the top of the console and search "S3". Then click on the link it offers.
 
