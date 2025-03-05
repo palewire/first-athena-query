@@ -1,11 +1,10 @@
-"""Utilities for working Amazon Athena."""
+"""Utilities for working with Amazon Athena."""
 
 from __future__ import annotations
 
 import io
 import os
 import time
-import typing
 
 import boto3
 import pandas as pd
@@ -99,7 +98,7 @@ def create_table(
     sql += "ROW FORMAT DELIMITED\n"
     sql += "FIELDS TERMINATED BY ','\n"
     sql += "STORED AS TEXTFILE\n"
-    sql += f"LOCATION '{location}'\n"
+    sql += f"LOCATION 's3://{os.getenv('AWS_S3_BUCKET_NAME')}{location}'\n"
     sql += "TBLPROPERTIES ('skip.header.line.count'='1')"
 
     # Run the query
@@ -166,6 +165,7 @@ def get_dataframe(
         "s3",
         aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
         aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
+        region_name=os.getenv("AWS_REGION_NAME"),
     )
 
     # Download the file created by our query
@@ -197,7 +197,7 @@ def query(
         sql : str
             formatted string containing athena sql query
         wait : int
-            number of seconds to wait between checking query status
+            number of seconds to wait between efforts to check the query status
         verbose : bool
             whether to print verbose output
 
