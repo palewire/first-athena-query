@@ -44,15 +44,15 @@ Again, the results return with blazing speed.
 
 ![Group result](_static/group-result.png)
 
-While speeds will vary based on data size, query complexity, and he queue of other users in the system, Athena can quickly return almost any SQL query you throw at it.
+While speeds will vary based on data size, query complexity, and the queue of other users in the system, Athena can quickly return almost any SQL query you throw at it.
 
 We won’t conduct a complete, polished data analysis in this tutorial, but here’s an example of a more complex query that a data journalist might dream up for a real story.
 
 Let us presume that we’d like to examine the trends in lending patterns in Johnson County, Iowa, where Ben grew up.
 
-We could filter this nationwide dataset down to the county in question using the county_code field and then calculate the number of loans by year and purpose.
+We could filter this nationwide dataset down to the county in question using the `county_code` field and then calculate the number of loans by year and purpose.
 
-A [quick web search](https://www.icip.iastate.edu/maps/refmaps/COFIPS) will reveal that Johnson County's unique identifier is 19103. If we visit the [official documentation]((https://ffiec.cfpb.gov/documentation/tools/data-browser/data-browser-filters#loan-purpose-loan_purpose)) for the HMDA database, we can find a dictionary explaining the meaning of each field. It shows that the `loan_purpose` field can have five values, each representing a different reason for the loan.
+A [quick web search](https://www.icip.iastate.edu/maps/refmaps/COFIPS) will reveal that Johnson County's unique identifier is 19103. If we visit the [official documentation]((https://ffiec.cfpb.gov/documentation/tools/data-browser/data-browser-filters#loan-purpose-loan_purpose)) for the HMDA database, we can find a dictionary explaining the meaning of each field. It shows that the `loan_purpose` field can have one of six values, each representing a different reason for the loan.
 
 [![HMDA docs](_static/hmda-docs.png)](https://ffiec.cfpb.gov/documentation/tools/data-browser/data-browser-filters#loan-purpose-loan_purpose)
 
@@ -77,3 +77,7 @@ ORDER BY activity_year
 Run it in Athena, and you'll see the results almost immediately. In this case, it takes less than three seconds.
 
 ![Pivot result](_static/pivot-result.png)
+
+By now, you should have a good sense of how to use Athena to query large datasets quickly and efficiently. Armed with this knowledge, you can start to explore the data in your S3 bucket and uncover the stories hidden within.
+
+In our next chapter, we'll show you how you can use the Python computer programming language script and schedule your queries to run outside of the web interface.

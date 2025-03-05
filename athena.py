@@ -62,7 +62,6 @@ def create_table(
     table_name: str,
     field_list: list[list[str, str]],
     location: str,
-    stored_as: typing.Literal["PARQUET", "CSV"] = "CSV",
     verbose: bool = False,
 ) -> str:
     """Create Amazon Athena table.
@@ -77,8 +76,6 @@ def create_table(
             Reference for field types available at https://docs.aws.amazon.com/athena/latest/ug/data-types.html
         location : str
             s3 location of the data inside AWS S3 bucket. e.g. 's3://my-bucket/my-folder/' would be /my-folder/
-        stored_as : str
-            file format of the source data. e.g. "PARQUET" or "CSV"
         verbose : bool
             whether to print verbose output
 
@@ -99,8 +96,11 @@ def create_table(
     for field in field_list:
         sql += f"    {field[0]} {field[1]},\n"
     sql = sql[:-2] + "\n)\n"
-    sql += f"STORED AS {stored_as}\n"
-    sql += f"LOCATION '{location}'"
+    sql += "ROW FORMAT DELIMITED\n"
+    sql += "FIELDS TERMINATED BY ','\n"
+    sql += "STORED AS TEXTFILE\n"
+    sql += f"LOCATION '{location}'\n"
+    sql += "TBLPROPERTIES ('skip.header.line.count'='1')"
 
     # Run the query
     if verbose:
