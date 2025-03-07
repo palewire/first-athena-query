@@ -64,6 +64,7 @@ def file_exists_in_s3(file_path):
             return False
         else:
             raise
+    return False
 
 def fetch_data(params):
     """
