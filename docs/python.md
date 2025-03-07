@@ -22,8 +22,6 @@ Please copy and paste them into a text file for safekeeping. Python will use the
 
 Now you will need to install [`boto3`](https://pypi.org/project/boto3/), the most popular Python tool for working with Amazon Web Services. You can do that from your terminal with the [`pipenv`](https://pipenv.pypa.io/en/latest/) Python package manager, or whatever package manager you prefer.
 
-You must install [`boto3`](https://pypi.org/project/boto3/), the most popular Python tool for working with Amazon Web Services. You can do that from your terminal with the [`pipenv`](https://pipenv.pypa.io/en/latest/) package manager or whatever installation tool you prefer.
-
 ```bash
 pipenv install boto3
 ```
