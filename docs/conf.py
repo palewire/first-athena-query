@@ -13,16 +13,25 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 html_theme = "palewire"
 pygments_style = "sphinx"
 
-html_sidebars: dict[Any, Any] = {}
-html_sidebars: dict[Any, Any] = {}
+html_sidebars: dict[Any, Any] = {
+    "**": [
+        "about.html",
+        "navigation.html",
+    ]
+}
 html_theme_options: dict[Any, Any] = {
     "canonical_url": "https://palewi.re/docs/first-athena-query/",
-    "nosidebar": True,
+    "nosidebar": False,
 }
 
 extensions = [
     "myst_parser",
-    "sphinx.ext.napoleon",
 ]
+
+myst_enable_extensions = [
+    "attrs_block",
+    "colon_fence",
+]
+myst_heading_anchors = 2
 source_suffix = ".md"
 master_doc = "index"

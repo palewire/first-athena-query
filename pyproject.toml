@@ -6,17 +6,14 @@ build-backend = "setuptools.build_meta"
 name = "first-athena-query"
 description = "How to analyze millions of records in seconds with Amazon Web Services and SQL"
 version = "1.0.0"
-requires-python = ">=3.9"
+requires-python = "==3.12.0"
 dependencies = [
-    'exceptiongroup; python_version<"3.11"',
     "pre-commit",
-    "boto3",
-    "jupyterlab",
     "pandas",
-]
-
-[project.optional-dependencies]
-docs = [
+    "boto3",
+    "python-dateutil",
+    "python-dotenv",
+    "requests",
     "sphinx",
     "sphinx-autobuild",
     "myst-parser",
