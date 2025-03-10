@@ -1,6 +1,6 @@
 # What is Athena?
 
-Athena is the name for a cloud-computing tool offered by Amazon Web Services that allows you to query static files, such as the comma-delimited data that serves as the raw material for so much data analysis.
+Athena is the name for a cloud-computing tool offered by Amazon Web Services that allows you to query static files, including the comma-delimited data that serves as the raw material for so much data analysis.
 
 ![Athena splash page](_static/athena.png)
 

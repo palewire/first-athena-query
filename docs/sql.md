@@ -4,7 +4,7 @@ After all that preparation, it's finally time to write some queries.
 
 Let’s start with something simple. To get a taste of your data, select all columns from the `hmda.loans` table and limit the results to 10 rows, a common technique.
 
-The SQL we’ll write is this simple command, roughly the same as you’d write in any SQL database:
+The SQL we’ll write is this simple command, roughly the same as you’d write in any database:
 
 ```sql
 SELECT *
@@ -30,6 +30,8 @@ FROM hmda.loans
 If you’ve been frustrated by the slow pace of SQL queries in the past, what you see next might surprise you. Athena scanned 16 gigabytes of data and counted 100 million rows in roughly 2.5 seconds.
 
 ![Count all result](_static/count-result.png)
+
+That "Data scanned" number is a good proxy for how much you'll be charged for the query. The more data you scan, the more you pay. At the time of this writing, the cost is $5 per terabyte.
 
 You’ll see similar results with more complex queries. Here’s a simple step-up that groups the data by the `activity_year` column and counts the number of rows in each group, roughly the equivalent of a pivot table in Excel.
 

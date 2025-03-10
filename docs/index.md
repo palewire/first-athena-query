@@ -12,7 +12,7 @@ This tutorial offers a solution: Amazon Athena. Follow along to learn how the cl
 
 ## Who can take it
 
-This course is free. Previous experience working with [Amazon Web Services](https://en.wikipedia.org/wiki/Amazon_Web_Services) and SQL will come in handy, but anyone with good attitude is qualified to take the class. You will be charged for the Amazon resources you use, so a credit card is required.
+This course is free. Previous experience working with [Amazon Web Services](https://en.wikipedia.org/wiki/Amazon_Web_Services) and SQL will come in handy, but anyone with a good attitude is qualified to take the class. You will be charged for the Amazon resources you use, so a credit card is required.
 
 ## Table of contents
 
