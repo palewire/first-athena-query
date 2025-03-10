@@ -26,7 +26,7 @@ Now you will need to install [`boto3`](https://pypi.org/project/boto3/), the mos
 pipenv install boto3
 ```
 
-Create a file named `.env` in your project directory to store your AWS credentials and other sensitive information. It should look like the following:
+Create a file named `.env` in your project directory to store your Amazon credentials and other sensitive information. It should look like the following:
 
 ```
 AWS_ACCESS_KEY_ID=YOUR_ACCESS_KEY_ID
@@ -35,13 +35,13 @@ AWS_REGION_NAME=YOUR_REGION_NAME
 AWS_S3_BUCKET_NAME=YOUR_BUCKET_NAME
 ```
 
-The key identifier and secret are the two values you copied from the AWS console. The bucket is the name of the S3 bucket you created in the previous chapter. Unless you changed the default settings when creating your S3 bucket, the region name should be `us-east-1`.
+The key identifier and secret are the two values you copied from the Amazon console. The bucket value is the name of the S3 bucket you created in the previous chapter. Unless you changed the default settings when creating your S3 bucket, the region name should be `us-east-1`.
 
 :::{admonition} Note
 If you’re using a tool other than `pipenv`, you’ll need to manage the secrets in whatever manner your system prefers.
 :::
 
-Please create a new file called `athena.py` in your text editor of choice — we prefer Microsoft's VSCode — and paste the following:
+Please create a new file called `athena.py` in your text editor of choice — we prefer Microsoft's Visual Studio Code — and paste the following:
 
 ```python
 """Utilities for working with Amazon Athena."""

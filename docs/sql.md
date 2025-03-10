@@ -82,4 +82,4 @@ Run it in Athena, and you'll see the results almost immediately. In this case, i
 
 By now, you should have a good sense of how to use Athena to query large datasets quickly and efficiently. Armed with this knowledge, you can start to explore the data in your S3 bucket and uncover the stories hidden within.
 
-In our next chapter, we'll show you how you can use the Python computer programming language script and schedule your queries to run outside of the web interface.
+In our next chapter, we'll show you how you can use the Python computer programming language to script and schedule your queries to run outside of the web interface.
