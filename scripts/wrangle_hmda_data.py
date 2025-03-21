@@ -71,7 +71,7 @@ def fetch_data(params):
     Fetches CSV data from the HMDA API using the provided year and loan purpose parameters.
     Note: as of writing, this HMDA endpoint only accepts a min of 1 param, maximum of 2 — despite how large these files are.
     """
-    print(f"Fetching data for {params["years"]}: loan purpose {params["loan_purposes"]}")
+    print(f"Fetching data for {params['years']}: loan purpose {params['loan_purposes']}")
     response = requests.get(API_ENDPOINT, params=params)
     response.raise_for_status()
     return response.text
