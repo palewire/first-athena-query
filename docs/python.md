@@ -391,7 +391,7 @@ def drop_table(
     return query(f"DROP TABLE IF EXISTS {database_name}.{table_name}", verbose=verbose)
 ```
 
-If we were to begin again from scratch, we could recreate all of the steps we took to setup our database with the following:
+If we were to begin again from scratch, we could recreate all of the steps we took to set up our database with the following:
 
 ```python
 import athena
