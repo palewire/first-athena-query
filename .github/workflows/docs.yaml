@@ -19,7 +19,7 @@ jobs:
 
       - id: install-uv
         name: Install uv
-        uses: astral-sh/setup-uv@v5
+        uses: astral-sh/setup-uv@v7
         with:
           version: "latest"
           enable-cache: true
@@ -27,11 +27,11 @@ jobs:
 
       - id: install-python
         name: Install Python
-        run: uv python install 3.12
+        run: uv python install 3.13
 
       - id: install-python-dependencies
         name: Install Python dependencies
-        run: uv venv && uv pip install .
+        run: uv sync
 
       - id: build-sphinx-documentation
         name: Build Sphinx documentation
